@@ -128,7 +128,6 @@ class Jugador(pygame.sprite.Sprite):
                 if self.vy < 0:
                     self.rect.top = colisiones[0].rect.bottom
 
-
 # --- Clase Enemigo ---
 class Enemigo(pygame.sprite.Sprite):
     def __init__(self, juego, x, y):
