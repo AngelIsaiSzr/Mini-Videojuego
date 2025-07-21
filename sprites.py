@@ -69,7 +69,6 @@ class Jugador(pygame.sprite.Sprite):
             self.vx *= 0.7071
             self.vy *= 0.7071
 
-
     def update(self):
         """
         Actualiza la posición del jugador en cada fotograma.
@@ -88,7 +87,6 @@ class Jugador(pygame.sprite.Sprite):
         self.rect.y += self.vy
         # Comprobamos si ha habido colisión en el eje Y.
         self.comprobar_colisiones('y')
-
 
         # --- Comprobación de Límites de Pantalla (opcional si el nivel es cerrado) ---
         if self.rect.left < 0:
@@ -127,6 +125,7 @@ class Jugador(pygame.sprite.Sprite):
                 # Si nos movemos hacia arriba...
                 if self.vy < 0:
                     self.rect.top = colisiones[0].rect.bottom
+
 
 # --- Clase Enemigo ---
 class Enemigo(pygame.sprite.Sprite):
@@ -242,7 +241,9 @@ class EnemigoPerseguidor(pygame.sprite.Sprite):
         """
         Actualiza la posición del enemigo persiguiendo al jugador.
         """
-        # Obtenemos la posición del jugador.
+        # Verifica que el jugador exista
+        if not hasattr(self.juego, "jugador") or self.juego.jugador is None:
+            return
         jugador = self.juego.jugador
         
         # Calculamos la dirección hacia el jugador.
